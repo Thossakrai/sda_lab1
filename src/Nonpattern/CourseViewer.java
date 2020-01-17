@@ -33,7 +33,7 @@ public class CourseViewer extends JFrame implements ActionListener,
     public CourseViewer() {
         this.setTitle("Observer Pattern -- Non Pattern Version");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        sliders = new ArrayList<JSlider>();
+        sliders = new ArrayList<>();
         sliderPanel = new JPanel();
         sliderPanel.setLayout(new GridBagLayout());
         sliderPanel.setBackground(Color.white);
@@ -149,12 +149,33 @@ public class CourseViewer extends JFrame implements ActionListener,
 //	}
     public void paint(Graphics g) {
         super.paint(g);
+
+        LayoutConstants.paintBarChartOutline(g, sliders.size());
+		for (int i = 0; i < sliders.size(); i++) {
+			JSlider record = sliders.get(i);
+			g.setColor(LayoutConstants.courseColours[i]);
+			g.fillRect(
+					LayoutConstants.xOffset + (i + 1)
+							* LayoutConstants.barSpacing + i
+							* LayoutConstants.barWidth, LayoutConstants.yOffset
+							+ LayoutConstants.graphHeight
+							- LayoutConstants.barHeight + 2
+							* (LayoutConstants.maxValue - record.getValue()),
+					LayoutConstants.barWidth, 2 * record.getValue());
+			g.setColor(Color.red);
+			g.drawString(record.getName(),
+					LayoutConstants.xOffset + (i + 1)
+							* LayoutConstants.barSpacing + i
+							* LayoutConstants.barWidth, LayoutConstants.yOffset
+							+ LayoutConstants.graphHeight + 20);
+		}
+
         int radius = 100;
 
         //first compute the total number of students
         double total = 0.0;
-        for (int i = 0; i < sliders.size(); i++) {
-            total += sliders.get(i).getValue();
+        for (JSlider slider : sliders) {
+            total += slider.getValue();
         }
         //if total == 0 nothing to draw
         if (total != 0) {

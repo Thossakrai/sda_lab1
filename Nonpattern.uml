@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Nonpattern</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">Nonpattern.CourseRecord</node>
+    <node x="152.0" y="0.0">Nonpattern.LayoutConstants</node>
+    <node x="33.000000000000014" y="79.0">Nonpattern.CourseViewer</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="152.5" y="54.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

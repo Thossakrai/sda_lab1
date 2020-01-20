@@ -47,6 +47,13 @@ public abstract class Observable {
 		}
 	}
 
+	public void notifyObserver(Object obj) {
+		for (int i =0; i < observers.size(); i++){
+			Observer observer = observers.get(i);
+			observer.update(this, obj);
+		}
+	}
+
 	/**
 	 * Pull updated data from this Subject
 	 * 

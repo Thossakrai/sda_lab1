@@ -41,7 +41,8 @@ public class BarChartObserver extends JPanel implements Observer {
 		for (int i = 0; i < courseData.size(); i++) {
 			CourseRecord record = (CourseRecord) courseData.get(i);
 			g.setColor(Color.blue);
-			g.fillRect(LayoutConstants.xOffset + (i + 1)
+			g.fillRect(
+					LayoutConstants.xOffset + (i + 1)
 							* LayoutConstants.barSpacing + i
 							* LayoutConstants.barWidth, LayoutConstants.yOffset
 							+ LayoutConstants.graphHeight
@@ -49,7 +50,7 @@ public class BarChartObserver extends JPanel implements Observer {
 							+ 2
 							* (LayoutConstants.maxValue - record
 									.getNumOfStudents()),
-			LayoutConstants.barWidth, 2 * record.getNumOfStudents());
+					LayoutConstants.barWidth, 2 * record.getNumOfStudents());
 			g.setColor(Color.red);
 			g.drawString(record.getName(),
 					LayoutConstants.xOffset + (i + 1)
@@ -57,25 +58,6 @@ public class BarChartObserver extends JPanel implements Observer {
 							* LayoutConstants.barWidth, LayoutConstants.yOffset
 							+ LayoutConstants.graphHeight + 20);
 		}
-	// Pie Chart
-//		double total = 0.0;
-//		int radius = 100;
-//		for (int i = 0; i < this.courseData.size(); i++) {
-//			CourseRecord record = (CourseRecord) courseData.get(i);
-//			total += record.getNumOfStudents();
-//		}
-//		//if total == 0 nothing to draw
-//		if (total != 0) {
-//			double startAngle = 0.0;
-//			for (int i = 0; i < this.courseData.size(); i++) {
-//				CourseRecord record = (CourseRecord) courseData.get(i);
-//				double ratio = (record.getNumOfStudents() / total) * 360.0;
-//				//draw the arc
-//				g.setColor(Nonpattern.LayoutConstants.courseColours[i % Nonpattern.LayoutConstants.courseColours.length]);
-//				g.fillArc(Nonpattern.LayoutConstants.xOffset, Nonpattern.LayoutConstants.yOffset + 300, 2 * radius, 2 * radius, (int) startAngle, (int) ratio);
-//				startAngle += ratio;
-//			}
-//		}
 	}
 
 	/**

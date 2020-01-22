@@ -97,6 +97,7 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	 * @param o
 	 *            the CourseData subject that has changed
 	 */
+	// Pull
 	 public void update(Observable o) {
 		CourseData courses = (CourseData) o;
 		ArrayList<CourseRecord> newCourses = courses.getUpdate();
@@ -105,12 +106,10 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 		}
 	}
 
-
-	public void update(Observable o, Object arg_) {
-		CourseData courses = (CourseData) o;
-		ArrayList<CourseRecord> newCourses = courses.getUpdate();
-		for (int i = sliders.size(); i < newCourses.size(); i++) {
-			this.addCourse((CourseRecord) newCourses.get(i));
+	// Push
+	public void update(ArrayList<CourseRecord> data) {
+		for (int i = sliders.size(); i < data.size(); i++) {
+			this.addCourse((CourseRecord) data.get(i));
 		}
 	}
 
@@ -180,10 +179,6 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		frame.getContentPane().add(scrollPane, constraints);
-		constraints.weightx = 0.5;
-		constraints.weighty = 1.0;
-		constraints.gridx = 2;
-		constraints.gridy = 0;
 		frame.getContentPane().add(scrollPanePie, constraints);
 		frame.pack();
 		frame.setVisible(true);

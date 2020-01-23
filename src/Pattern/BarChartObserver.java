@@ -66,9 +66,23 @@ public class BarChartObserver extends JPanel implements Observer {
 	 * @param o
 	 *            the observed CourseData object that has changed
 	 */
+
+	// Pull
 	public void update(Observable o) {
 		CourseData data = (CourseData) o;
 		this.courseData = data.getUpdate();
+
+		this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
+				+ (LayoutConstants.barSpacing + LayoutConstants.barWidth)
+				* this.courseData.size(), LayoutConstants.graphHeight + 2
+				* LayoutConstants.yOffset));
+		this.revalidate();
+		this.repaint();
+	}
+
+	// Push
+	public void update(ArrayList<CourseRecord> data){
+		this.courseData = data;
 
 		this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
 				+ (LayoutConstants.barSpacing + LayoutConstants.barWidth)

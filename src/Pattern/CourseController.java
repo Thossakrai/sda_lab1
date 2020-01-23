@@ -98,13 +98,22 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 	 * @param o
 	 *            the CourseData subject that has changed
 	 */
+
+	// Pull
 	 public void update(Observable o) {
 		CourseData courses = (CourseData) o;
 		ArrayList<CourseRecord> newCourses = courses.getUpdate();
 		for (int i = sliders.size(); i < newCourses.size(); i++) {
 			this.addCourse((CourseRecord) newCourses.get(i));
 		}
-	} 
+	}
+
+	// Push
+	public void update(ArrayList<CourseRecord> data) {
+		for (int i = sliders.size(); i < data.size(); i++) {
+			this.addCourse((CourseRecord) data.get(i));
+		}
+	}
 
 	/**
 	 * Manages the creation of a new course. Called when the "New Course" button is pressed.
@@ -144,10 +153,14 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 		data.addCourseRecord(new CourseRecord("Biology", 50));
 
 		CourseController controller = new CourseController(data);
-//		BarChartObserver bar = new BarChartObserver(data);
+		BarChartObserver bar = new BarChartObserver(data);
 		PieChartObserver pie = new PieChartObserver(data);
 
 		JScrollPane scrollPane = new JScrollPane(pie,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+		JScrollPane scrollPanePie = new JScrollPane(pie,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -168,6 +181,11 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 		frame.getContentPane().add(scrollPane, constraints);
+		constraints.weightx = 0.5;
+		constraints.weighty = 1.0;
+		constraints.gridx = 2;
+		constraints.gridy = 0;
+		frame.getContentPane().add(scrollPanePie, constraints);
 		frame.pack();
 		frame.setVisible(true);
 	}

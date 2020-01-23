@@ -5,19 +5,19 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PieChartObserver extends JPanel implements Observer {
-
     public PieChartObserver(CourseData data) {
         data.attach(this);
         this.courseData = data.getUpdate();
         this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
                 + (LayoutConstants.barSpacing + LayoutConstants.barWidth)
+
                 * this.courseData.size(),
                 LayoutConstants.graphHeight + 2
-                * LayoutConstants.yOffset * this.courseData.size() * 2));
+                        * LayoutConstants.yOffset * this.courseData.size() * 2));
         this.setBackground(Color.white);
     }
 
-    @Override
+
     public void paint(Graphics g) {
         super.paint(g);
         int radius = 100;
@@ -26,6 +26,8 @@ public class PieChartObserver extends JPanel implements Observer {
         double total = 0.0;
         for (int i = 0; i < courseData.size(); i++) {
             total += courseData.get(i).getNumOfStudents();
+
+
         }
         //if total == 0 nothing to draw
         if (total != 0) {
@@ -33,7 +35,7 @@ public class PieChartObserver extends JPanel implements Observer {
             for (int i = 0; i < courseData.size(); i++) {
                 double ratio = (courseData.get(i).getNumOfStudents() / total) * 360.0;
                 //draw the arc
-                g.setColor(LayoutConstants.courseColours[i%LayoutConstants.courseColours.length]);
+                g.setColor(LayoutConstants.courseColours[i % LayoutConstants.courseColours.length]);
                 g.fillArc(LayoutConstants.xOffset, LayoutConstants.yOffset + 300, 2 * radius, 2 * radius, (int) startAngle, (int) ratio);
                 startAngle += ratio;
             }
@@ -44,6 +46,8 @@ public class PieChartObserver extends JPanel implements Observer {
     public void update(Observable o) {
         CourseData data = (CourseData) o;
         this.courseData = data.getUpdate();
+
+
         this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
                 + (LayoutConstants.barSpacing + LayoutConstants.barWidth)
                 * this.courseData.size(), LayoutConstants.graphHeight + 2
@@ -52,5 +56,19 @@ public class PieChartObserver extends JPanel implements Observer {
         this.repaint();
     }
 
+
     private ArrayList<CourseRecord> courseData;
+
+    // Push
+    public void update(ArrayList<CourseRecord> data) {
+        this.courseData = data;
+        this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
+                + (LayoutConstants.barSpacing + LayoutConstants.barWidth)
+                * this.courseData.size(), LayoutConstants.graphHeight + 2
+                * LayoutConstants.yOffset));
+        this.revalidate();
+        this.repaint();
+    }
+
+
 }

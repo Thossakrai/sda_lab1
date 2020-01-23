@@ -147,6 +147,7 @@ public class CourseViewer extends JFrame implements ActionListener,
 //							+ LayoutConstants.graphHeight + 20);
 //		}
 //	}
+
     public void paint(Graphics g) {
         super.paint(g);
 

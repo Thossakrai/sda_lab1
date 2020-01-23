@@ -40,6 +40,8 @@ public abstract class Observable {
 	/**
 	 * Notify all Observers that Subject has changed
 	 */
+
+	// Pull
 	public void notifyObservers() {
 		for (int i = 0; i < observers.size(); i++) {
 			Observer observer = observers.get(i);
@@ -47,10 +49,11 @@ public abstract class Observable {
 		}
 	}
 
-	public void notifyObserver(Object obj) {
-		for (int i =0; i < observers.size(); i++){
+	// Push
+	public void notifyObservers(ArrayList<CourseRecord> data){
+		for (int i = 0; i < observers.size(); i++) {
 			Observer observer = observers.get(i);
-			observer.update(this, obj);
+			observer.update(data);
 		}
 	}
 

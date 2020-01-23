@@ -41,7 +41,8 @@ public class CourseData extends Observable {
 		}
 		if (!alreadyExists)
 			this.courseData.add(courseRecord);
-		this.notifyObservers();
+//		this.notifyObservers();		// Pull
+		this.notifyObservers(this.getUpdate()); 	// Push
 	}
 
 	/**
@@ -60,7 +61,8 @@ public class CourseData extends Observable {
 				i = courseData.size();
 			}
 		}
-		this.notifyObservers();
+//		this.notifyObservers();		// Pull
+		this.notifyObservers(this.getUpdate());		// Push
 	}
 
 	/**

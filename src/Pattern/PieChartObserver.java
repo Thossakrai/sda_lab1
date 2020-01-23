@@ -41,6 +41,7 @@ public class PieChartObserver extends JPanel implements Observer {
         }
     }
 
+    // Pull
     public void update(Observable o) {
         CourseData data = (CourseData) o;
         this.courseData = data.getUpdate();
@@ -53,10 +54,9 @@ public class PieChartObserver extends JPanel implements Observer {
         this.repaint();
     }
 
-    public void update(Observable o, Object obj) {
-        CourseData data = (CourseData) o;
-        this.courseData = data.getUpdate();
-
+    // Push
+    public void update(ArrayList<CourseRecord> data){
+        this.courseData = data;
         this.setPreferredSize(new Dimension(2 * LayoutConstants.xOffset
                 + (LayoutConstants.barSpacing + LayoutConstants.barWidth)
                 * this.courseData.size(), LayoutConstants.graphHeight + 2
@@ -64,4 +64,6 @@ public class PieChartObserver extends JPanel implements Observer {
         this.revalidate();
         this.repaint();
     }
+
+
 }

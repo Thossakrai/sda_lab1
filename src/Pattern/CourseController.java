@@ -24,9 +24,10 @@ import javax.swing.event.ChangeListener;
  * pattern to be notified when a new course has been added.
  */
 @SuppressWarnings("serial")
+
 public class CourseController extends JPanel implements Observer, ChangeListener, ActionListener {
 	/**
-	 * Constructs a CourseController object
+* Constructs a CourseControๅ-ๆ		+๐ๆ-												ๆ																																																													ๅ-		---ller object
 	 * 
 	 * @param courses
 	 *            a set of courses and their marks
@@ -143,9 +144,10 @@ public class CourseController extends JPanel implements Observer, ChangeListener
 		data.addCourseRecord(new CourseRecord("Biology", 50));
 
 		CourseController controller = new CourseController(data);
-		BarChartObserver bar = new BarChartObserver(data);
+//		BarChartObserver bar = new BarChartObserver(data);
+		PieChartObserver pie = new PieChartObserver(data);
 
-		JScrollPane scrollPane = new JScrollPane(bar,
+		JScrollPane scrollPane = new JScrollPane(pie,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
